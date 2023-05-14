@@ -1,0 +1,54 @@
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: solid silver 1px;
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            width: 12%;
+            font-size: xx-large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input {
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #panel {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #win {
+            color: darkolivegreen;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 100px;
+            text-align: center;
+            text-shadow: 3px 6px 9px;
+            font-size: 200px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: none;
+        }
+
+        #logo {
+            float: right;
+            width: 32px;
+            height: 32px;
+            background-image: url('icon.png');
+            background-size: contain;
+        }
