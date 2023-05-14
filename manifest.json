@@ -1,0 +1,14 @@
+{
+  "name": "Cryptomino-7",
+  "short_name": "Cryptomino-7",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }],
+  "start_url": "index.html",
+  "scope": ".",
+  "background_color": "white",
+  "theme_color": "white",
+  "display": "standalone"
+}
