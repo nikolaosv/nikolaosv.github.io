@@ -40,7 +40,7 @@ function dragHandler(e) {
     orgCursor = target.style.cursor;
     selObj = target;
 
-    if (target.className == "moveable") {
+    if (target.className === "moveable") {
         savedTarget = target;
         target.style.cursor = htype;
         dragOK = true;
