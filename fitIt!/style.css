@@ -1,0 +1,49 @@
+        body {
+            background-image: linear-gradient(to right, black, white);
+            touch-action: none;
+        }
+
+        .moveable {
+            position: absolute;
+            cursor: move;
+            opacity: 0;
+        }
+
+        #ta {
+            width: 280px;
+            height: 245px;
+            position: absolute;
+            left: 35px;
+            top: 35px;
+        }
+
+        #back {
+            width: 280px;
+            height: 245px;
+        }
+
+        #panel {
+            width: 350px;
+        }
+
+        #google {
+            position: absolute;
+            right: 100px;
+            bottom: 25px;
+            width: 50px;
+            opacity: 0.25;
+        }
+        #google:hover {
+            opacity: 1;
+        }
+
+        #windows {
+            position: absolute;
+            right: 25px;
+            bottom: 25px;
+            width: 50px;
+            opacity: 0.25;
+        }
+        #windows:hover {
+            opacity: 1;
+        }

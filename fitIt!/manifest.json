@@ -1,0 +1,14 @@
+{
+  "name": "Fit It!",
+  "short_name": "Fit It!",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "290x290",
+    "type": "image/png"
+  }],
+  "start_url": "index.html",
+  "scope": ".",
+  "background_color": "black",
+  "theme_color": "black",
+  "display": "standalone"
+}
