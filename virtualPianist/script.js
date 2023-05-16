@@ -203,7 +203,7 @@ function loadSounds() {
         let sound = new Audio(iowa[test]);
         sound.addEventListener('loadeddata', function () { test++; loadSounds(); });
         sound.addEventListener('error', function () {
-            document.getElementById('notation').innerHTML = "ERROR! CANNOT LOAD SOUNDS.";
+            document.getElementById('score').innerHTML = "ERROR! CANNOT LOAD SOUNDS.";
         });
     }
     else {
