@@ -21,7 +21,7 @@
         scales[9] = [0, 3, 6, 1, 5, 8, 3, 6, 10, 5, 8, 12, 6, 10, 13, 8, 12, 15, 10, 13, 17];
 
         let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
-        let quart = [0, 0, 0], base, speed, disturb, sindex, beats, beat, freq, offset;
+        let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
         let paths = new Array(36);
 
         let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -35,8 +35,8 @@
             paths[k + 24] = 'piano/' + notes[k] + 5 + '.mp3';
         }
         function curve(t) {
-            let X = Math.sin(freq * t / 12) * Math.cos(812 * t + 2 * Math.PI * 0.588);
-            let Y = Math.cos(freq * t / 12 + 2 * Math.PI * 0.801) * Math.sin(984 * t);
+            let X = Math.sin(freq * t / 12) * Math.cos(A * t + 2 * Math.PI * B);
+            let Y = Math.cos(freq * t / 12 + 2 * Math.PI * C) * Math.sin(D * t);
 
             return [Math.round(Math.abs(X * 6)) % 7, 8 - Math.floor(Math.abs(Y * 5)) % 6];
         }
@@ -166,6 +166,11 @@
                 if (sindex === 1 || sindex === 5) offset = 0;
                 else offset = Math.floor(Math.random() * 3);
 
+                A = Math.ceil(Math.random() * 1000);
+                B = Math.random();
+                C = Math.random();
+                D = Math.ceil(Math.random() * 1000);
+
                 document.getElementById('bpm').value = Math.round(60000 / ((30 - speed) * 64));
                 this.innerHTML = "STOP";
                 compose(0, -1);
@@ -183,7 +188,7 @@
             sound.connect(audioCtx.destination);
             sound.connect(gainNode);
             gainNode.connect(audioCtx.destination);
-            gainNode.gain.value = 1;
+            gainNode.gain.value = 0.5 + v;
             sound.start(curTime + t / 1000 + 1);
         }
         function loadSounds() {
