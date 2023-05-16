@@ -24,15 +24,15 @@ let test = 0;
 
 for (let k = 0; k < 3 * piano.length; k++) {
     let prefix = 'iowa/loud/';
-    let postfix = '-97-127.wav';
+    let postfix = '-97-127.mp3';
 
     if (k < piano.length) {
         prefix = 'iowa/soft/';
-        postfix = '-1-48.wav';
+        postfix = '-1-48.mp3';
     }
     else if (k < 2 * piano.length) {
         prefix = 'iowa/med/';
-        postfix = '-49-96.wav';
+        postfix = '-49-96.mp3';
     }
     iowa[k] = prefix + piano[k % piano.length] + postfix;
 }
