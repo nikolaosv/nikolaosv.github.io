@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <button id="score">PLAY</button>
+    <button id="score" disabled>Loading sounds...</button>
     <input type="text" id="bpm" readonly />
     <script type="text/javascript">
         let scales = new Array(16);
@@ -196,11 +196,12 @@
                 let sound = new Audio(paths[test]);
                 sound.addEventListener('loadeddata', function () { test++; loadSounds(); });
                 sound.addEventListener('error', function () {
-                    alert("ERROR! CANNOT LOAD SOUNDS...");
+                    document.getElementById('score').innerHTML = "ERROR! CANNOT LOAD SOUNDS...";
                 });
             }
             else {
                 document.getElementById('score').disabled = false;
+                document.getElementById('score').innerHTML = "PLAY";
             }
             return;
         }
