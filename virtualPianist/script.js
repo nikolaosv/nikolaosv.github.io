@@ -14,7 +14,7 @@ let piano = ['A2', 'Bb2', 'B2', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2
 let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
 
 let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
-let iowa = new Array(72);
+let iowa = new Array(48);
 
 let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 let gainNode;
@@ -22,15 +22,11 @@ let curTime = 0;
 let winNow = 0;
 let test = 0;
 
-for (let k = 0; k < 2 * piano.length; k++) {
+for (let k = 0; k < piano.length; k++) {
     let prefix = 'iowa/med/';
     let postfix = '-49-96.mp3';
 
-    if (k < piano.length) {
-        prefix = 'iowa/soft/';
-        postfix = '-1-48.mp3';
-    }
-    iowa[k] = prefix + piano[k % piano.length] + postfix;
+    iowa[k] = prefix + piano[k] + postfix;
 }
 function curve(t) {
     let X = Math.sin(freq * t / 12) * Math.cos(A * t + 2 * Math.PI * B);
@@ -115,17 +111,17 @@ function compose(time, prev) {
             if (Math.random() < 5 * disturb) {
                 let crand = c[Math.floor(Math.random() * quart.length)];
 
-                play(crand, (time + bias) * (30 - speed), 5 * step[1] / 100, 0);
+                play(crand, (time + bias) * (30 - speed), 5 * step[1] / 100);
                 if (Math.random() < disturb) continue;
             }
             let nota = c[i];
             if (ranb < disturb) nota = c[c.length - i - 1];
 
-            play(nota, (time + bias) * (30 - speed), 5 * step[1] / 100, 0);
+            play(nota, (time + bias) * (30 - speed), 5 * step[1] / 100);
         }
         prev = c[0];
     }
-    if (!silence) play(level + 12, time * (30 - speed), 0.25 + 3 * step[1] / 100, 36);
+    if (!silence) play(level + 12, time * (30 - speed), 0.25 + 3 * step[1] / 100);
 
     time += dot * Math.pow(2, step[1]);
 
@@ -187,9 +183,9 @@ document.getElementById('score').addEventListener('click', function () {
         compose(0, -1);
     }
 });
-function play(n, t, v, o) {
+function play(n, t, v) {
     var sound = audioCtx.createBufferSource();
-    var instr = iowa[n + o];
+    var instr = iowa[n];
 
     fetch(instr, { cache: "force-cache" })
         .then(response => response.arrayBuffer())
@@ -201,9 +197,9 @@ function play(n, t, v, o) {
     sound.start(curTime + t / 1000 + 1);
 }
 function loadSounds() {
-    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 100 / 72) + "%)";
+    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 100 / 48) + "%)";
 
-    if (test < 72) {
+    if (test < 48) {
         let sound = new Audio(iowa[test]);
         sound.addEventListener('loadeddata', function () { test++; loadSounds(); });
         sound.addEventListener('error', function () {
