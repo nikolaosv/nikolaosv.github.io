@@ -1,2 +1,2 @@
 # nikolaosv.github.io
-Progressive web app (PWA) versions of mind puzzles, educational games and digital art projects.
+Progressive web app (PWA) versions of logic puzzles, educational quizzes and digital art projects.
