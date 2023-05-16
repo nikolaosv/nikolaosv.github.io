@@ -183,7 +183,7 @@
             sound.connect(audioCtx.destination);
             sound.connect(gainNode);
             gainNode.connect(audioCtx.destination);
-            gainNode.gain.value = 0.5 + v;
+            gainNode.gain.value = 1;
             sound.start(curTime + t / 1000 + 1);
         }
         function loadSounds() {
