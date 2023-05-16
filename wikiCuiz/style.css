@@ -1,0 +1,39 @@
+button {
+    font-size: large;
+    font-weight: bolder;
+    min-height: 3em;
+    margin: 1%;
+    padding: 1em;
+}
+
+#lang {
+    margin: 10%;
+    font-size: large;
+    width: 75%;
+}
+
+#spellcheckinput {
+    margin: 10%;
+    font-size: large;
+    font-weight: bolder;
+    text-align: center;
+    padding: 0.25em;
+    width: 75%;
+    display: none;
+}
+
+#clock {
+    display: none;
+    font-size: xx-large;
+    opacity: 0.5;
+}
+
+#secs {
+    font-size: large;
+    vertical-align: middle;
+}
+
+#result {
+    opacity: 0.75;
+    font-size: 100px;
+}
