@@ -10,11 +10,11 @@ scales[7] = [0, 3, 7, 1, 5, 8, 3, 7, 10, 5, 8, 12, 7, 10, 13, 8, 12, 15, 10, 13,
 scales[8] = [0, 3, 6, 1, 5, 8, 3, 6, 10, 5, 8, 12, 6, 10, 13, 8, 12, 15, 10, 13, 17];
 
 let modes = ["Major", "Major (pentatonic)", "Lydian", "Mixolydian", "Minor", "Minor (pentatonic)", "Dorian", "Phrygian", "Locrian"];
-let piano = ['A2', 'Bb2', 'B2', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A3', 'Bb3', 'B3', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A4', 'Bb4', 'B4', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A5', 'Bb5', 'B5', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5'];
+let piano = ['A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5'];
 let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
 
 let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
-let iowa = new Array(48);
+let iowa = new Array(36);
 
 let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 let gainNode;
@@ -197,9 +197,9 @@ function play(n, t, v) {
     sound.start(curTime + t / 1000 + 1);
 }
 function loadSounds() {
-    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 100 / 48) + "%)";
+    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 100 / 36) + "%)";
 
-    if (test < 48) {
+    if (test < 36) {
         let sound = new Audio(iowa[test]);
         sound.addEventListener('loadeddata', function () { test++; loadSounds(); });
         sound.addEventListener('error', function () {
