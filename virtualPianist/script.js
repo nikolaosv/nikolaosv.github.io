@@ -149,7 +149,7 @@ document.getElementById('score').addEventListener('click', function () {
         speed = Math.ceil(Math.random() * 15) + 10;
         disturb = Math.random() / 10;
         sindex = Math.floor(Math.random() * 9);
-        beats = Math.ceil(Math.random() * 12) + 2;
+        beats = Math.ceil(Math.random() * 12) + 4;
         freq = 2 * Math.PI / beat;
 
         pattern();
