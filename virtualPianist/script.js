@@ -10,19 +10,31 @@ scales[7] = [0, 3, 7, 1, 5, 8, 3, 7, 10, 5, 8, 12, 7, 10, 13, 8, 12, 15, 10, 13,
 scales[8] = [0, 3, 6, 1, 5, 8, 3, 6, 10, 5, 8, 12, 6, 10, 13, 8, 12, 15, 10, 13, 17];
 
 let modes = ["Major", "Major (pentatonic)", "Lydian", "Mixolydian", "Minor", "Minor (pentatonic)", "Dorian", "Phrygian", "Locrian"];
+let piano = ['A2', 'Bb2', 'B2', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5'];
 let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
+
 let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
-let paths = new Array(36);
+let iowa = new Array(108);
 
 let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let gainNode;
 let curTime = 0;
 let winNow = 0;
 let test = 0;
 
-for (let k = 0; k < notes.length; k++) {
-    paths[k] = 'piano/' + notes[k] + 3 + '.mp3';
-    paths[k + 12] = 'piano/' + notes[k] + 4 + '.mp3';
-    paths[k + 24] = 'piano/' + notes[k] + 5 + '.mp3';
+for (let k = 0; k < 3 * piano.length; k++) {
+    let prefix = 'iowa/loud/';
+    let postfix = '-97-127.wav';
+
+    if (k < piano.length) {
+        prefix = 'iowa/soft/';
+        postfix = '-1-48.wav';
+    }
+    else if (k < 2 * piano.length) {
+        prefix = 'iowa/med/';
+        postfix = '-49-96.wav';
+    }
+    iowa[k] = prefix + piano[k % piano.length] + postfix;
 }
 function curve(t) {
     let X = Math.sin(freq * t / 12) * Math.cos(A * t + 2 * Math.PI * B);
@@ -33,6 +45,9 @@ function curve(t) {
 function compose(time, prev) {
     if (time === 0) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioCtx.createGain();
+        gainNode.connect(audioCtx.destination);
+
         curTime = audioCtx.currentTime;
         winNow = window.performance.now();
     }
@@ -104,17 +119,17 @@ function compose(time, prev) {
             if (Math.random() < 5 * disturb) {
                 let crand = c[Math.floor(Math.random() * quart.length)];
 
-                play(crand, (time + bias) * (30 - speed), 5 * step[1] / 100);
+                play(crand, (time + bias) * (30 - speed), 5 * step[1] / 100, 0);
                 if (Math.random() < disturb) continue;
             }
             let nota = c[i];
             if (ranb < disturb) nota = c[c.length - i - 1];
 
-            play(nota, (time + bias) * (30 - speed), 5 * step[1] / 100);
+            play(nota, (time + bias) * (30 - speed), 5 * step[1] / 100, 0);
         }
         prev = c[0];
     }
-    if (!silence) play(level + 12, time * (30 - speed), 0.25 + 3 * step[1] / 100);
+    if (!silence) play(level + 12, time * (30 - speed), 0.25 + 3 * step[1] / 100, 36);
 
     time += dot * Math.pow(2, step[1]);
 
@@ -176,27 +191,25 @@ document.getElementById('score').addEventListener('click', function () {
         compose(0, -1);
     }
 });
-function play(n, t, v) {
-    var gainNode = audioCtx.createGain();
+function play(n, t, v, o) {
     var sound = audioCtx.createBufferSource();
+    var instr = iowa[n + o];
 
-    fetch(paths[n], { cache: "force-cache" })
+    fetch(instr, { cache: "force-cache" })
         .then(response => response.arrayBuffer())
         .then(buffer => audioCtx.decodeAudioData(buffer))
         .then(decodedData => sound.buffer = decodedData);
 
-    sound.connect(audioCtx.destination);
-    sound.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
     gainNode.gain.value = 0.5 + v;
+    sound.connect(gainNode);
     sound.start(curTime + t / 1000 + 1);
 }
 function loadSounds() {
-    if (test < 36) {
-        let sound = new Audio(paths[test]);
+    if (test < 108) {
+        let sound = new Audio(iowa[test]);
         sound.addEventListener('loadeddata', function () { test++; loadSounds(); });
         sound.addEventListener('error', function () {
-            alert("ERROR! CANNOT LOAD SOUNDS...");
+            document.getElementById('notation').innerHTML = "ERROR! CANNOT LOAD SOUNDS.";
         });
     }
     else {
