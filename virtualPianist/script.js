@@ -37,9 +37,6 @@ function curve(t) {
 function compose(time, prev) {
     if (time === 0) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        gainNode = audioCtx.createGain();
-        gainNode.connect(audioCtx.destination);
-
         curTime = audioCtx.currentTime;
         winNow = window.performance.now();
     }
@@ -185,6 +182,7 @@ document.getElementById('score').addEventListener('click', function () {
 });
 function play(n, t, v) {
     var sound = audioCtx.createBufferSource();
+    var gainNode = audioCtx.createGain();
     var instr = iowa[n];
 
     fetch(instr, { cache: "force-cache" })
@@ -192,7 +190,9 @@ function play(n, t, v) {
         .then(buffer => audioCtx.decodeAudioData(buffer))
         .then(decodedData => sound.buffer = decodedData);
 
+    gainNode.connect(audioCtx.destination);
     gainNode.gain.value = 0.5 + v;
+
     sound.connect(gainNode);
     sound.start(curTime + t / 1000 + 1);
 }
