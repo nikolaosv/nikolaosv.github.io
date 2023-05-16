@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nikos V.</title>
+    <style>
+        p,
+        select {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <p>A progressive web application (PWA), or progressive web app, is a type of application software delivered
+        through the web, built using common web technologies including HTML, CSS, JavaScript, and WebAssembly. It is
+        intended to work on any platform with a standards-compliant browser, including desktop and mobile
+        devices. Since a progressive web app is a type of webpage or website known as a web application, it does
+        not require separate bundling or distribution. Developers can simply publish the web application online,
+        ensure that it meets baseline installation requirements and that users will be able to add the application
+        to their home screen. Publishing the app to digital distribution systems like Apple App Store or Google Play
+        is optional. <strong><a href="https://en.wikipedia.org/wiki/Progressive_web_app">Wikipedia</a></strong>
+    </p>
+    <select id="list">
+        <option disabled selected>Select an app...</option>
+        <optgroup label="PUZZLES">
+            <option value="/fitIt!">Fit It!</a></option>
+            <option value="/blackKnight">Black Knight</a></option>
+            <option value="/cryptomino7">Cryptomino-7</a></option>
+        </optgroup>
+        <optgroup label="EDUCATION">
+            <option value="/wikiCuiz">WikiCuiz</a></option>
+        </optgroup>
+        <optgroup label="DIGITAL ART">
+        </optgroup>
+    </select>
+    <script>
+        document.getElementById("list").addEventListener("change", function () {
+            window.open(this.value, "_self");
+        });
+    </script>
+</body>
+
+</html>
