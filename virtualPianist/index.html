@@ -17,6 +17,11 @@
         #info {
             font-weight: bold;
             padding: 1em;
+            height: 50px;
+        }
+
+        #credit {
+            font-size: x-small;
         }
     </style>
 </head>
@@ -24,6 +29,7 @@
 <body>
     <button id="score" disabled>Loading sounds...</button>
     <div id="info"></div>
+    <div id="credit">Virtual pianist is a minimal demo version of the <a href="https://dart-x.blogspot.com/p/virtual-composer.html" target="_blank">AMiGO</a> music composition tool.</div>
     <script type="text/javascript">
         let scales = new Array(16);
         scales[0] = [0, 4, 7, 2, 5, 9, 4, 7, 11, 5, 9, 12, 7, 11, 14, 9, 12, 16, 11, 14, 17];
