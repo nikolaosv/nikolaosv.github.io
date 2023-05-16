@@ -14,7 +14,7 @@ let piano = ['A2', 'Bb2', 'B2', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2
 let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
 
 let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
-let iowa = new Array(108);
+let iowa = new Array(72);
 
 let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 let gainNode;
@@ -22,17 +22,13 @@ let curTime = 0;
 let winNow = 0;
 let test = 0;
 
-for (let k = 0; k < 3 * piano.length; k++) {
-    let prefix = 'iowa/loud/';
-    let postfix = '-97-127.mp3';
+for (let k = 0; k < 2 * piano.length; k++) {
+    let prefix = 'iowa/med/';
+    let postfix = '-49-96.mp3';
 
     if (k < piano.length) {
         prefix = 'iowa/soft/';
         postfix = '-1-48.mp3';
-    }
-    else if (k < 2 * piano.length) {
-        prefix = 'iowa/med/';
-        postfix = '-49-96.mp3';
     }
     iowa[k] = prefix + piano[k % piano.length] + postfix;
 }
@@ -205,9 +201,9 @@ function play(n, t, v, o) {
     sound.start(curTime + t / 1000 + 1);
 }
 function loadSounds() {
-    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.max(test - 7, 0) + "%)";
+    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 72 / 100) + "%)";
 
-    if (test < 108) {
+    if (test < 72) {
         let sound = new Audio(iowa[test]);
         sound.addEventListener('loadeddata', function () { test++; loadSounds(); });
         sound.addEventListener('error', function () {
