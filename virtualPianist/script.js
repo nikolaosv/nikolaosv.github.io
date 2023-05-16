@@ -185,7 +185,7 @@ function play(n, t, v) {
     var gainNode = audioCtx.createGain();
     var instr = iowa[n];
 
-    fetch(instr, { cache: "force-cache" })
+    fetch(instr, { cache: "only-if-cached" })
         .then(response => response.arrayBuffer())
         .then(buffer => audioCtx.decodeAudioData(buffer))
         .then(decodedData => sound.buffer = decodedData);
