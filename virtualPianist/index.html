@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <button id="score" disabled>PLAY</button>
+    <button id="score" disabled>WAIT</button>
     <input type="text" id="bpm" readonly />
     <script type="text/javascript">
         let scales = new Array(16);
@@ -171,8 +171,11 @@
                 C = Math.random();
                 D = Math.ceil(Math.random() * 1000);
 
-                document.getElementById('bpm').value = Math.round(60000 / ((30 - speed) * 64));
-                this.innerHTML = "STOP";
+                if (this.innerHTML.indexOf("LOAD") >= 0) this.innerHTML = "PLAY";
+                else {
+                    document.getElementById('bpm').value = Math.round(60000 / ((30 - speed) * 64));
+                    this.innerHTML = "STOP";
+                }
                 compose(0, -1);
             }
         });
@@ -201,7 +204,7 @@
             }
             else {
                 document.getElementById('score').disabled = false;
-                document.getElementById('score').innerHTML = "STOP";
+                document.getElementById('score').innerHTML = "LOAD";
             }
             return;
         }
