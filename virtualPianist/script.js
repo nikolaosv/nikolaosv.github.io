@@ -23,7 +23,7 @@ let winNow = 0;
 let test = 0;
 
 for (let k = 0; k < piano.length; k++) {
-    let prefix = 'iowa/med/';
+    let prefix = 'iowa/';
     let postfix = '-49-96.mp3';
 
     iowa[k] = prefix + piano[k] + postfix;
