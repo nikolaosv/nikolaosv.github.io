@@ -201,7 +201,7 @@ function play(n, t, v, o) {
     sound.start(curTime + t / 1000 + 1);
 }
 function loadSounds() {
-    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 72 / 100) + "%)";
+    document.getElementById('score').innerHTML = "Loading sounds... (" + Math.floor(test * 100 / 72) + "%)";
 
     if (test < 72) {
         let sound = new Audio(iowa[test]);
