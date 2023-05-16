@@ -9,6 +9,10 @@ button {
 .store {
     width: 50px;
     margin: 1em;
+    opacity: 0.5;
+}
+.store:hover {
+    opacity: 1;
 }
 
 #lang {
