@@ -107,17 +107,17 @@ function compose(time, prev) {
             if (Math.random() < 5 * disturb) {
                 let crand = c[Math.floor(Math.random() * quart.length)];
 
-                play(crand, (time + bias) * (30 - speed), 0.2 + 2 * step[1] / 100);
+                play(crand, (time + bias) * (30 - speed), 5 * step[1] / 100);
                 if (Math.random() < disturb) continue;
             }
             let nota = c[i];
             if (ranb < disturb) nota = c[c.length - i - 1];
 
-            play(nota, (time + bias) * (30 - speed), 0.2 + 2 * step[1] / 100);
+            play(nota, (time + bias) * (30 - speed), 5 * step[1] / 100);
         }
         prev = c[0];
     }
-    if (!silence) play(level + 12, time * (30 - speed), 0.3 + 3 * step[1] / 100);
+    if (!silence) play(level + 12, time * (30 - speed), 0.25 + 3 * step[1] / 100);
 
     time += dot * Math.pow(2, step[1]);
 
@@ -195,7 +195,7 @@ function play(n, t, v) {
     sound.connect(audioCtx.destination);
     sound.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    gainNode.gain.value = v;
+    gainNode.gain.value = 0.25 + v;
     sound.start(curTime + t / 1000 + 1);
 }
 function loadSounds() {
