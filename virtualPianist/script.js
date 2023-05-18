@@ -173,7 +173,7 @@ document.getElementById('score').addEventListener('click', function () {
             var notes = notes1[base].replace('b', '&#9837;');
             if (sindex <= 3) notes = notes2[base].replace('#', '&#9839;');
 
-            document.getElementById('info').innerHTML = "<span style='font-size:small'>" + staff[beats - 1];
+            document.getElementById('info').innerHTML = "<span style='font-size:x-small'>" + staff[beats - 1];
             document.getElementById('info').innerHTML += "</span>&nbsp;" + notes;
             document.getElementById('info').innerHTML += "&nbsp;" + modes[sindex];
             document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥" + Math.round(60000 / ((30 - speed) * 64));
