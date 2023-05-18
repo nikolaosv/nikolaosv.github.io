@@ -11,8 +11,9 @@ scales[8] = [0, 3, 6, 1, 5, 8, 3, 6, 10, 5, 8, 12, 6, 10, 13, 8, 12, 15, 10, 13,
 
 let modes = ["Major", "Major (pentatonic)", "Lydian", "Mixolydian", "Minor", "Minor (pentatonic)", "Dorian", "Phrygian", "Locrian"];
 let staff = ["<sup>5</sup>&#8260;<sub>8</sub>", "<sup>3</sup>&#8260;<sub>4</sub>", "<sup>7</sup>&#8260;<sub>8</sub>", "<sup>4</sup>&#8260;<sub>4</sub>", "<sup>9</sup>&#8260;<sub>8</sub>", "<sup>5</sup>&#8260;<sub>4</sub>", "<sup>11</sup>&#8260;<sub>8</sub>", "<sup>3</sup>&#8260;<sub>4</sub>", "<sup>13</sup>&#8260;<sub>8</sub>", "<sup>7</sup>&#8260;<sub>4</sub>", "<sup>15</sup>&#8260;<sub>8</sub>", "<sup>4</sup>&#8260;<sub>4</sub>"];
-//let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
-let notes = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
+let notes0 = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
+let notes1 = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
+let notes2 = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
 let paths = new Array(36);
 
@@ -21,10 +22,10 @@ let curTime = 0;
 let winNow = 0;
 let test = 0;
 
-for (let k = 0; k < notes.length; k++) {
-    paths[k] = 'piano/' + notes[k] + 3 + '.mp3';
-    paths[k + 12] = 'piano/' + notes[k] + 4 + '.mp3';
-    paths[k + 24] = 'piano/' + notes[k] + 5 + '.mp3';
+for (let k = 0; k < notes1.length; k++) {
+    paths[k] = 'piano/' + notes1[k] + 3 + '.mp3';
+    paths[k + 12] = 'piano/' + notes1[k] + 4 + '.mp3';
+    paths[k + 24] = 'piano/' + notes1[k] + 5 + '.mp3';
 }
 function curve(t) {
     let X = Math.sin(freq * t / 12) * Math.cos(A * t + 2 * Math.PI * B);
@@ -77,14 +78,14 @@ function compose(time, prev) {
             }
         }
         let l = 0;
-        for (let i = 1; i <= base + scale[tone]; i++) if (notes[i % 12].length === 1) l++;
+        for (let i = 1; i <= base + scale[tone]; i++) if (notes1[i % 12].length === 1) l++;
         l = 100 - 5 * l;
 
         for (let i = 0; i < 3; i++) {
             let t = l;
             l = base + scale[tone + i];
 
-            for (let j = t + 1; j <= l; j++) if (notes[j % 12].length != 1) t++;
+            for (let j = t + 1; j <= l; j++) if (notes1[j % 12].length != 1) t++;
             if (i != 0) t = 5 * (t - l) - 50;
 
             for (let j = 0; j < 16; j++) {
@@ -169,8 +170,11 @@ document.getElementById('score').addEventListener('click', function () {
             this.innerHTML = "PLAY";
         }
         else {
-            document.getElementById('info').innerHTML = staff[beats - 1];
-            document.getElementById('info').innerHTML += "&nbsp;" + notes[base];
+            var notes = notes1[base];
+            if (sindex <= 3) notes = notes2[base];
+
+            document.getElementById('info').innerHTML = "<span style='font-size:small'>" + staff[beats - 1];
+            document.getElementById('info').innerHTML += "</span>&nbsp;" + notes;
             document.getElementById('info').innerHTML += "&nbsp;" + modes[sindex];
             document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥" + Math.round(60000 / ((30 - speed) * 64));
             this.style.color = "firebrick";
