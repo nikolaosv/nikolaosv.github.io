@@ -170,8 +170,8 @@ document.getElementById('score').addEventListener('click', function () {
             this.innerHTML = "PLAY";
         }
         else {
-            var notes = notes1[base];
-            if (sindex <= 3) notes = notes2[base];
+            var notes = notes1[base].replace('b', '&#9837;');
+            if (sindex <= 3) notes = notes2[base].replace('#', '&#9839;');
 
             document.getElementById('info').innerHTML = "<span style='font-size:small'>" + staff[beats - 1];
             document.getElementById('info').innerHTML += "</span>&nbsp;" + notes;
