@@ -176,7 +176,7 @@ document.getElementById('score').addEventListener('click', function () {
             document.getElementById('info').innerHTML = "<span style='font-size:x-small'>" + staff[beats - 5];
             document.getElementById('info').innerHTML += "</span>&nbsp;&nbsp;" + notes;
             document.getElementById('info').innerHTML += "&nbsp;" + modes[sindex];
-            document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥<sup>" + Math.round(60000 / ((30 - speed) * 64)) + "</sup>";
+            document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥<sup style='font-size:x-small'>" + Math.round(60000 / ((30 - speed) * 64)) + "</sup>";
             this.style.color = "firebrick";
             this.innerHTML = "STOP";
         }
