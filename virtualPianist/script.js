@@ -174,9 +174,9 @@ document.getElementById('score').addEventListener('click', function () {
             if (sindex <= 3) notes = notes2[base].replace('#', '&#9839;');
 
             document.getElementById('info').innerHTML = "<span style='font-size:x-small'>" + staff[beats - 5];
-            document.getElementById('info').innerHTML += "</span>&nbsp;&nbsp;&nbsp;" + notes;
+            document.getElementById('info').innerHTML += "</span>&nbsp;&nbsp;" + notes;
             document.getElementById('info').innerHTML += "&nbsp;" + modes[sindex];
-            document.getElementById('info').innerHTML += "&nbsp&nbsp;𝅘𝅥" + Math.round(60000 / ((30 - speed) * 64));
+            document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥<sup>" + Math.round(60000 / ((30 - speed) * 64)) + "</sup>";
             this.style.color = "firebrick";
             this.innerHTML = "STOP";
         }
