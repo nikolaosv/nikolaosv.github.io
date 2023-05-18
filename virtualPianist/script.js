@@ -10,6 +10,7 @@ scales[7] = [0, 3, 7, 1, 5, 8, 3, 7, 10, 5, 8, 12, 7, 10, 13, 8, 12, 15, 10, 13,
 scales[8] = [0, 3, 6, 1, 5, 8, 3, 6, 10, 5, 8, 12, 6, 10, 13, 8, 12, 15, 10, 13, 17];
 
 let modes = ["Major", "Major (pentatonic)", "Lydian", "Mixolydian", "Minor", "Minor (pentatonic)", "Dorian", "Phrygian", "Locrian"];
+let staff = ["<sup>5</sup>&#8260;<sub>8</sub>", "<sup>3</sup>&#8260;<sub>4</sub>", "<sup>7</sup>&#8260;<sub>8</sub>", "<sup>4</sup>&#8260;<sub>4</sub>", "<sup>9</sup>&#8260;<sub>8</sub>", "<sup>5</sup>&#8260;<sub>4</sub>", "<sup>11</sup>&#8260;<sub>8</sub>", "<sup>3</sup>&#8260;<sub>4</sub>", "<sup>13</sup>&#8260;<sub>8</sub>", "<sup>7</sup>&#8260;<sub>4</sub>", "<sup>15</sup>&#8260;<sub>8</sub>", "<sup>4</sup>&#8260;<sub>4</sub>"];
 //let notes = ['a', 'a-', 'b', 'c', 'c-', 'd', 'd-', 'e', 'f', 'f-', 'g', 'g-'];
 let notes = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
 let quart, base, speed, disturb, sindex, beats, beat, freq, offset, A, B, C, D;
@@ -168,7 +169,8 @@ document.getElementById('score').addEventListener('click', function () {
             this.innerHTML = "PLAY";
         }
         else {
-            document.getElementById('info').innerHTML = notes[base];
+            document.getElementById('info').innerHTML = staff[beats - 1];
+            document.getElementById('info').innerHTML += "&nbsp;" + notes[base];
             document.getElementById('info').innerHTML += "&nbsp;" + modes[sindex];
             document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥" + Math.round(60000 / ((30 - speed) * 64));
             this.style.color = "firebrick";
