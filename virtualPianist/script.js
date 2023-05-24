@@ -187,7 +187,7 @@ function play(n, t, v) {
     var gainNode = audioCtx.createGain();
     var sound = audioCtx.createBufferSource();
 
-    fetch(paths[n], { cache: "force-cache" })
+    fetch(paths[n])
         .then(response => response.arrayBuffer())
         .then(buffer => audioCtx.decodeAudioData(buffer))
         .then(decodedData => sound.buffer = decodedData);
