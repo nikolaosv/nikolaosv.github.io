@@ -4,7 +4,8 @@
 <head>
     <title>Nikos V.</title>
     <style>
-        h5, p,
+        h5,
+        p,
         select {
             font-family: Arial, Helvetica, sans-serif;
             width: 100%;
@@ -14,10 +15,10 @@
 
 <body>
     <h5>PWAs by Nikos V. on <a href="https://github.com/nikolaosv/nikolaosv.github.io">GitHub</a></h5>
-    <p style="font-size: small;">A progressive web application (PWA), or progressive web app, is a type of application software delivered
-        through the web, built using common web technologies including HTML, CSS, JavaScript, and WebAssembly. It is
-        intended to work on any platform with a standards-compliant browser, including desktop and mobile
-        devices. Since a progressive web app is a type of webpage or website known as a web application, it does
+    <p style="font-size: x-small;">A progressive web application (PWA), or progressive web app, is a type of application
+        software delivered through the web, built using common web technologies including HTML, CSS, JavaScript, and
+        WebAssembly. It is intended to work on any platform with a standards-compliant browser, including desktop and
+        mobile devices. Since a progressive web app is a type of webpage or website known as a web application, it does
         not require separate bundling or distribution. Developers can simply publish the web application online,
         ensure that it meets baseline installation requirements and that users will be able to add the application
         to their home screen. Publishing the app to digital distribution systems like Apple App Store or Google Play
@@ -25,16 +26,16 @@
     </p>
     <select id="list">
         <option disabled selected>Select...</option>
+        <optgroup label="Digital art">
+            <option value="/virtualPianist">Virtual pianist</option>
+        </optgroup>
+        <optgroup label="Education">
+            <option value="/wikiCuiz">WikiCuiz</option>
+        </optgroup>
         <optgroup label="Logic puzzles">
             <option value="/fitIt!">Fit It!</option>
             <option value="/blackKnight">Black Knight</option>
             <option value="/cryptomino7">Cryptomino-7</option>
-        </optgroup>
-        <optgroup label="Educational quizzes">
-            <option value="/wikiCuiz">WikiCuiz</option>
-        </optgroup>
-        <optgroup label="Digital art projects">
-            <option value="/virtualPianist">Virtual pianist</option>
         </optgroup>
     </select>
     <script>
