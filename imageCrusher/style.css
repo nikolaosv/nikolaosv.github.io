@@ -1,0 +1,27 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: silver;
+}
+
+strong {
+    float: right;
+    font-size: small;
+}
+
+#content {
+    opacity: 0;
+}
+
+#final {
+    cursor: crosshair;
+}
+
+#oPhoto {
+    display: none;
+}
+
+#oFile {
+    float: left;
+}

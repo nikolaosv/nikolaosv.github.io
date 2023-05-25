@@ -1,0 +1,14 @@
+{
+  "name": "Image Crusher",
+  "short_name": "Image Crusher",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }],
+  "start_url": "index.html",
+  "scope": ".",
+  "background_color": "black",
+  "theme_color": "black",
+  "display": "standalone"
+}
