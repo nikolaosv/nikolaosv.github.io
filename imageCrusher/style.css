@@ -6,7 +6,9 @@ body {
 }
 
 strong {
-    float: right;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
     font-size: small;
 }
 
