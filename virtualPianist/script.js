@@ -179,6 +179,9 @@ document.getElementById('score').addEventListener('click', function () {
             document.getElementById('info').innerHTML += "&nbsp;𝅘𝅥<sup style='font-size:x-small'>" + Math.round(60000 / ((30 - speed) * 64)) + "</sup>";
             this.style.color = "firebrick";
             this.innerHTML = "STOP";
+
+            let file = '96|' + Math.round(60000 / ((30 - speed) * 64)) + '|' + beats + '|' + quart.join('#') + '|' + offset + '|1|' + 1000 * B + '#' + A + '|100|' + 1000 * C + '#' + D + '|' + base + '#' + sindex + '|0|0|';
+            console.log(file);
         }
         compose(0, -1);
     }
