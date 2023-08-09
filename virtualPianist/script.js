@@ -180,7 +180,7 @@ document.getElementById('score').addEventListener('click', function () {
             this.style.color = "firebrick";
             this.innerHTML = "STOP";
 
-            let file = '96|' + Math.round(60000 / ((30 - speed) * 64)) + '|' + beats + '|' + quart.join('#') + '|' + offset + '|1|' + 1000 * B + '#' + A + '|100|' + 1000 * C + '#' + D + '|' + base + '#' + sindex + '|0|0|';
+            let file = '96|' + Math.round(60000 / ((30 - speed) * 64)) + '|' + beats + '|' + quart.join('#') + '|' + offset + '|1|' + Math.round(1000 * B) + '#' + A + '|100|' + Math.round(1000 * C) + '#' + D + '|' + base + '#' + sindex + '|0|0|';
             console.log(file);
         }
         compose(0, -1);
